@@ -79,12 +79,12 @@ Tunable values live in [`src/config.ts`](src/config.ts):
 
 ## Theme
 
-**Midnight Teal**
+**Navy & Gold** (client blue + yellow direction)
 
-- Background `#071419`
-- Cards `#10242D`
-- Accent `#00D5D8`
-- Text `#F5F7FA`
+- Background `#0A1740`
+- Cards `#1A367C`
+- Accent `#E8C46A`
+- Text `#F7F8FC`
 
 ## Known limitations / deferred
 

@@ -1,17 +1,22 @@
 :root {
-  --bg: #071419;
-  --bg-elevated: #0b1c24;
-  --card: #10242d;
-  --card-border: rgba(0, 213, 216, 0.22);
-  --accent: #00d5d8;
-  --accent-soft: rgba(0, 213, 216, 0.12);
-  --accent-glow: rgba(0, 213, 216, 0.35);
-  --text: #f5f7fa;
-  --text-muted: rgba(245, 247, 250, 0.62);
-  --danger: #ff6b7a;
-  --meter-green: #2ee59d;
-  --meter-yellow: #f5d76e;
-  --meter-red: #ff5a5a;
+  /* Client blue + yellow palette — navy field, gold accent */
+  --bg: #0a1740;
+  --bg-elevated: #122560;
+  --card: #1a367c;
+  --card-deep: #132b66;
+  --card-border: rgba(232, 196, 106, 0.28);
+  --accent: #e8c46a;
+  --accent-bright: #f5d78a;
+  --accent-deep: #c9a24a;
+  --accent-soft: rgba(232, 196, 106, 0.14);
+  --accent-glow: rgba(232, 196, 106, 0.38);
+  --blue-glow: rgba(80, 130, 220, 0.28);
+  --text: #f7f8fc;
+  --text-muted: rgba(247, 248, 252, 0.64);
+  --danger: #ff7b8a;
+  --meter-green: #3dd68c;
+  --meter-yellow: #e8c46a;
+  --meter-red: #ff5f6d;
 
   --font-display: 'Syne', 'Avenir Next', sans-serif;
   --font-body: 'DM Sans', 'Segoe UI', sans-serif;
@@ -20,7 +25,7 @@
 
   --radius: 14px;
   --shell-max: 460px;
-  --shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+  --shadow: 0 18px 50px rgba(4, 12, 40, 0.55);
 
   color-scheme: dark;
   font-family: var(--font-body);
@@ -50,9 +55,10 @@ body {
   margin: 0;
   min-height: 100svh;
   background:
-    radial-gradient(1200px 600px at 50% -10%, rgba(0, 213, 216, 0.14), transparent 55%),
-    radial-gradient(800px 400px at 100% 100%, rgba(0, 120, 140, 0.18), transparent 50%),
-    var(--bg);
+    radial-gradient(1100px 560px at 50% -12%, rgba(232, 196, 106, 0.16), transparent 55%),
+    radial-gradient(900px 480px at 0% 100%, rgba(50, 100, 210, 0.35), transparent 55%),
+    radial-gradient(700px 420px at 100% 80%, rgba(26, 54, 124, 0.9), transparent 50%),
+    linear-gradient(165deg, #0c1c4c 0%, #0a1740 45%, #081230 100%);
 }
 
 #root {
@@ -82,15 +88,15 @@ input {
   position: fixed;
   inset: 0;
   background:
-    linear-gradient(180deg, transparent 60%, rgba(7, 20, 25, 0.85)),
+    linear-gradient(180deg, transparent 58%, rgba(8, 18, 48, 0.88)),
     repeating-linear-gradient(
       0deg,
       transparent,
       transparent 2px,
-      rgba(0, 213, 216, 0.015) 2px,
-      rgba(0, 213, 216, 0.015) 3px
+      rgba(232, 196, 106, 0.018) 2px,
+      rgba(232, 196, 106, 0.018) 3px
     );
-  opacity: 0.7;
+  opacity: 0.75;
 }
 
 .hf-shell {
@@ -124,6 +130,10 @@ input {
   display: block;
   width: min(100%, 300px);
   height: auto;
+  /* Shift cyan logo accents toward gold until a navy/gold asset is supplied */
+  filter:
+    hue-rotate(-138deg) saturate(1.2) brightness(1.08)
+    drop-shadow(0 6px 18px rgba(232, 196, 106, 0.22));
 }
 
 .hf-sound {
@@ -134,7 +144,7 @@ input {
   height: 44px;
   border-radius: 12px;
   border: 1px solid var(--card-border);
-  background: var(--card);
+  background: linear-gradient(160deg, #21408f, #16306e);
   color: var(--accent);
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
@@ -154,7 +164,11 @@ input {
 .hf-disclaimer {
   padding: 12px 14px;
   border-radius: var(--radius);
-  background: var(--accent-soft);
+  background: linear-gradient(
+    90deg,
+    rgba(232, 196, 106, 0.12),
+    rgba(26, 54, 124, 0.55)
+  );
   border: 1px solid var(--card-border);
   color: var(--text-muted);
   font-size: 0.88rem;
@@ -166,7 +180,7 @@ input {
 }
 
 .hf-disclaimer strong {
-  color: var(--accent);
+  color: var(--accent-bright);
   font-weight: 600;
 }
 
@@ -176,9 +190,11 @@ input {
   gap: 14px;
   padding: 18px;
   border-radius: calc(var(--radius) + 4px);
-  background: linear-gradient(180deg, var(--card), var(--bg-elevated));
+  background:
+    linear-gradient(165deg, rgba(232, 196, 106, 0.08), transparent 38%),
+    linear-gradient(180deg, #1e3d8a, #152b66);
   border: 1px solid var(--card-border);
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 .hf-field {
@@ -209,18 +225,18 @@ input {
   width: 100%;
   padding: 12px 14px;
   border-radius: 10px;
-  border: 1px solid rgba(245, 247, 250, 0.14);
-  background: rgba(7, 20, 25, 0.65);
+  border: 1px solid rgba(247, 248, 252, 0.16);
+  background: rgba(8, 20, 56, 0.72);
   color: var(--text);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .hf-input::placeholder {
-  color: rgba(245, 247, 250, 0.35);
+  color: rgba(247, 248, 252, 0.35);
 }
 
 .hf-input:hover:not(:disabled) {
-  border-color: rgba(0, 213, 216, 0.35);
+  border-color: rgba(232, 196, 106, 0.4);
 }
 
 .hf-input:focus {
@@ -252,14 +268,16 @@ input {
   padding: 14px 18px;
   border: none;
   border-radius: 999px;
-  background: linear-gradient(135deg, #00e7ea, #00b7c2);
-  color: #041016;
+  background: linear-gradient(135deg, #f5d78a, #e0b84f 55%, #c9a24a);
+  color: #1a2748;
   font-family: var(--font-display);
   font-weight: 800;
   font-size: 1.05rem;
   letter-spacing: 0.01em;
   cursor: pointer;
-  box-shadow: 0 0 0 1px rgba(0, 213, 216, 0.4), 0 10px 30px var(--accent-glow);
+  box-shadow:
+    0 0 0 1px rgba(232, 196, 106, 0.45),
+    0 10px 28px var(--accent-glow);
   transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -305,9 +323,10 @@ input {
 .hf-meter {
   padding: 16px 18px;
   border-radius: var(--radius);
-  background: var(--card);
+  background: linear-gradient(180deg, #1c3a84, #15306c);
   border: 1px solid var(--card-border);
   text-align: left;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .hf-meter__header {
@@ -337,7 +356,8 @@ input {
   height: 14px;
   border-radius: 999px;
   overflow: visible;
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(4, 12, 40, 0.55);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.35);
 }
 
 .hf-meter__gradient {
@@ -346,7 +366,7 @@ input {
   border-radius: inherit;
   background: linear-gradient(
     90deg,
-    #1ec8d0 0%,
+    #2bb8c9 0%,
     var(--meter-green) 28%,
     var(--meter-yellow) 62%,
     var(--meter-red) 100%
@@ -361,7 +381,7 @@ input {
   margin-left: -2px;
   border-radius: 999px;
   background: #fff;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.75);
   transform: translateY(-50%);
   transition: left 1.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -382,9 +402,11 @@ input {
   gap: 14px;
   padding: 18px;
   border-radius: calc(var(--radius) + 2px);
-  background: linear-gradient(160deg, rgba(16, 36, 45, 0.95), rgba(7, 20, 25, 0.95));
+  background:
+    linear-gradient(145deg, rgba(232, 196, 106, 0.12), transparent 42%),
+    linear-gradient(160deg, #1e3d8a, #12255c);
   border: 1px solid var(--card-border);
-  box-shadow: 0 0 0 1px rgba(0, 213, 216, 0.08), var(--shadow);
+  box-shadow: 0 0 0 1px rgba(232, 196, 106, 0.08), var(--shadow);
   text-align: left;
   animation: hf-result-in 0.45s ease both;
 }
@@ -402,16 +424,17 @@ input {
 }
 
 .hf-result--green {
-  border-color: rgba(46, 229, 157, 0.45);
+  border-color: rgba(61, 214, 140, 0.5);
 }
 
 .hf-result--yellow {
-  border-color: rgba(245, 215, 110, 0.45);
+  border-color: rgba(232, 196, 106, 0.65);
+  box-shadow: 0 0 20px rgba(232, 196, 106, 0.16), var(--shadow);
 }
 
 .hf-result--red {
-  border-color: rgba(255, 90, 90, 0.5);
-  box-shadow: 0 0 24px rgba(255, 90, 90, 0.18), var(--shadow);
+  border-color: rgba(255, 95, 109, 0.55);
+  box-shadow: 0 0 24px rgba(255, 95, 109, 0.2), var(--shadow);
 }
 
 .hf-result__avatar {
@@ -419,8 +442,8 @@ input {
   place-items: center;
   border-radius: 16px;
   background:
-    radial-gradient(circle at 30% 30%, rgba(0, 213, 216, 0.35), transparent 55%),
-    #0a1a22;
+    radial-gradient(circle at 30% 30%, rgba(232, 196, 106, 0.35), transparent 55%),
+    #12255c;
   border: 1px solid var(--card-border);
 }
 
@@ -429,8 +452,8 @@ input {
   height: 48px;
   border-radius: 50%;
   background:
-    radial-gradient(circle at 35% 30%, #dff7f8, #7adfe3 45%, #0e3a42 70%);
-  box-shadow: inset 0 -8px 12px rgba(0, 0, 0, 0.25);
+    radial-gradient(circle at 35% 30%, #fff4d4, #e8c46a 45%, #1a367c 72%);
+  box-shadow: inset 0 -8px 12px rgba(0, 0, 0, 0.28);
   position: relative;
 }
 
@@ -442,7 +465,7 @@ input {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: #041016;
+  background: #1a2748;
 }
 
 .hf-result__avatar-face::before {
@@ -478,7 +501,7 @@ input {
   font-family: var(--font-display);
   font-size: clamp(1.5rem, 6vw, 1.9rem);
   font-weight: 800;
-  color: var(--accent);
+  color: var(--accent-bright);
   letter-spacing: -0.03em;
   text-shadow: 0 0 16px var(--accent-glow);
 }
@@ -505,7 +528,7 @@ input {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px 10px;
-  border-top: 1px solid rgba(0, 213, 216, 0.12);
+  border-top: 1px solid rgba(232, 196, 106, 0.18);
 }
 
 .hf-features__item {
